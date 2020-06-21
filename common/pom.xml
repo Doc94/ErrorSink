@@ -6,7 +6,7 @@
     <parent>
         <artifactId>errorsink</artifactId>
         <groupId>me.wiefferink</groupId>
-        <version>1.2.0-SNAPSHOT</version>
+        <version>2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>io.sentry</groupId>
             <artifactId>sentry-log4j2</artifactId>
-            <version>1.7.5</version>
+            <version>1.7.30</version>
         </dependency>
 
         <!-- Prevent Raven-Java warning about logging framework -->

@@ -10,7 +10,6 @@ import me.wiefferink.errorsink.common.ErrorSinkSentryAppender;
 import me.wiefferink.errorsink.common.EventRuleMatcher;
 import me.wiefferink.errorsink.common.Log;
 import me.wiefferink.errorsink.common.editors.Breadcrumbs;
-import me.wiefferink.errorsink.spigot.tools.Analytics;
 import me.wiefferink.errorsink.spigot.tools.Utils;
 import ninja.leaping.configurate.ConfigurationNode;
 import ninja.leaping.configurate.yaml.YAMLConfigurationLoader;
@@ -103,10 +102,6 @@ public class SpigotErrorSink extends JavaPlugin implements ErrorSinkPlugin {
 		Utils.run(bukkitSentryClientFactory::updateInAppFrames);
 		// Just to be sure
 		Utils.run(20L, bukkitSentryClientFactory::updateInAppFrames);
-
-		if(getConfig().getBoolean("sendStats")) {
-			Analytics.start();
-		}
 
 		this.getCommand("exception").setExecutor(new DeliberateException());
 	}
