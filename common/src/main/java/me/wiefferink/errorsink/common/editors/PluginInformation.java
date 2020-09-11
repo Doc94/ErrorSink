@@ -9,7 +9,7 @@ public class PluginInformation extends EventEditor {
 
 	@Override
 	public void processEvent(EventBuilder builder, LogEvent event) {
-		builder.withExtra("Plugins", ErrorSink.getPlugin().getLoadedPlugins());
+		builder.withExtra("Plugins", ErrorSink.getInstance().getLoadedPlugins());
 	}
 
 }

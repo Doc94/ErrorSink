@@ -31,7 +31,7 @@ public class ErrorSinkSentryAppender extends SentryAppender {
 	private Set<EventEditor> eventEditors;
 
 	public ErrorSinkSentryAppender() {
-	    ConfigurationNode rootNode = ErrorSink.getPlugin().getPluginConfig();
+	    ConfigurationNode rootNode = ErrorSink.getInstance().getPluginConfig();
 		eventEditors = new HashSet<>();
 
 		// Filters
@@ -101,7 +101,7 @@ public class ErrorSinkSentryAppender extends SentryAppender {
 		Message eventMessage = event.getMessage();
 		EventBuilder eventBuilder = new EventBuilder()
 				.withSdkIntegration("log4j2")
-				.withTimestamp(new Date(ErrorSink.getPlugin().getTimeStamp(event)))
+				.withTimestamp(new Date(ErrorSink.getInstance().getTimeStamp(event)))
 				.withMessage(eventMessage.getFormattedMessage())
 				.withLogger(event.getLoggerName())
 				.withLevel(levelToEventLevel(event.getLevel()))
@@ -164,7 +164,7 @@ public class ErrorSinkSentryAppender extends SentryAppender {
 		}
 
 		Log.debug("Sending event to sentry:", eventBuilder);
-		ErrorSink.getPlugin().increaseMessageSent();
+		ErrorSink.getInstance().increaseMessageSent();
 		return eventBuilder;
 	}
 }

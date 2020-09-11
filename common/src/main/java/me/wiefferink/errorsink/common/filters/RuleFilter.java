@@ -44,7 +44,7 @@ public class RuleFilter extends AbstractFilter {
 				// Match all rules
 				for(Object ruleKey : rules.getChildrenMap().keySet()) {
 					// Match event
-					if(rules.getNode(ruleKey, "bypassFilters").getBoolean() && ErrorSink.getPlugin().match(
+					if(rules.getNode(ruleKey, "bypassFilters").getBoolean() && ErrorSink.getInstance().match(
 							Lists.newArrayList("events", "rules", ruleKey),
 							message,
 							level,
@@ -59,7 +59,7 @@ public class RuleFilter extends AbstractFilter {
 			// Match all filters
 			for(Object ruleKey : filters.getChildrenMap().keySet()) {
 				// Match event
-				if(ErrorSink.getPlugin().match(
+				if(ErrorSink.getInstance().match(
 						Lists.newArrayList("events", "filters", ruleKey),
 						message,
 						level,

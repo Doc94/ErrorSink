@@ -25,8 +25,8 @@ public class RuleData extends EventEditor {
 	@Override
 	public void processEvent(EventBuilder eventBuilder, LogEvent event) {
 		// Plugin information
-		eventBuilder.withServerName(ErrorSink.getPlugin().getServerName());
-		eventBuilder.withRelease(ErrorSink.getPlugin().getRelease());
+		eventBuilder.withServerName(ErrorSink.getInstance().getServerName());
+		eventBuilder.withRelease(ErrorSink.getInstance().getRelease());
 
 		// Config rules
 		if(rules != null) {
@@ -39,7 +39,7 @@ public class RuleData extends EventEditor {
 				ConfigurationNode rule = entry.getValue();
 
 				// Match event
-				Map<String, String> replacements = ErrorSink.getPlugin().match(
+				Map<String, String> replacements = ErrorSink.getInstance().match(
 						Lists.newArrayList("events", "rules", ruleKey),
 						formattedMessage,
 						event.getLevel(),

@@ -37,7 +37,7 @@ public class Breadcrumbs extends EventEditor {
 
 	public Breadcrumbs(Logger... loggers) {
 		this.loggers = loggers;
-		ConfigurationNode root = ErrorSink.getPlugin().getPluginConfig();
+		ConfigurationNode root = ErrorSink.getInstance().getPluginConfig();
 		rules = root.getNode("breadcrumbs", "rules");
 		filters = root.getNode("breadcrumbs", "filters");
 		maximumEntries = root.getNode("breadcrumbs", "maximumEntries").getInt(50);
@@ -58,7 +58,7 @@ public class Breadcrumbs extends EventEditor {
 				}
 				if(filters != null) {
 					for(Object filterKey : filters.getChildrenMap().keySet()) {
-						if(ErrorSink.getPlugin().match(
+						if(ErrorSink.getInstance().match(
 								Lists.newArrayList("breadcrumbs", "filters", filterKey),
 								formattedMessage,
 								event.getLevel(),
@@ -108,7 +108,7 @@ public class Breadcrumbs extends EventEditor {
 			}
 
 			// Set defaults
-			breadcrumb.setTimestamp(new Date(ErrorSink.getPlugin().getTimeStamp(breadcrumbEvent)));
+			breadcrumb.setTimestamp(new Date(ErrorSink.getInstance().getTimeStamp(breadcrumbEvent)));
 			breadcrumb.setLevel(getBreadcrumbLevel(breadcrumbEvent));
 			breadcrumb.setCategory(" "); // Empty to indicate regular logging
 			breadcrumb.setType(Breadcrumb.Type.DEFAULT);
@@ -123,7 +123,7 @@ public class Breadcrumbs extends EventEditor {
 					String ruleKey = (String) entry.getKey();
 					ConfigurationNode rule = entry.getValue();
 
-					Map<String, String> replacements = ErrorSink.getPlugin().match(
+					Map<String, String> replacements = ErrorSink.getInstance().match(
 							Arrays.asList(rule.getPath()),
 							message,
 							breadcrumbEvent.getLevel(),

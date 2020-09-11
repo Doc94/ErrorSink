@@ -10,15 +10,15 @@ public class ServerInformation extends EventEditor {
 	private String serverVersion;
 
 	public ServerInformation() {
-		serverVersion = ErrorSink.getPlugin().getServerVersion();
+		serverVersion = ErrorSink.getInstance().getServerVersion();
 	}
 
 	@Override
 	public void processEvent(EventBuilder builder, LogEvent event) {
 		// Server information
 		builder.withTag("API", serverVersion);
-		builder.withExtra("Online players", ErrorSink.getPlugin().getOnlinePlayers());
-		ErrorSink.getPlugin().addExtraData(builder);
+		builder.withExtra("Online players", ErrorSink.getInstance().getOnlinePlayers());
+		ErrorSink.getInstance().addExtraData(builder);
 	}
 
 }
