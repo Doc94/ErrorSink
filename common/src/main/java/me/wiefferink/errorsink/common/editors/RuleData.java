@@ -103,7 +103,7 @@ public class RuleData extends EventEditor {
 				// Culprit
 				String culprit = applyReplacements(rule.getNode("culprit").getString(), replacements);
 				if (culprit != null) {
-					eventBuilder.withCulprit(culprit);
+					eventBuilder.withTransaction(culprit);
 				}
 
 				// Logger

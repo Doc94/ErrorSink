@@ -35,6 +35,7 @@ public class StackInformation extends EventEditor {
 			"^java.io.PrintStream.",
 			"^java.io.OutputStreamWriter."
 	));
+
 	private final static Set<Pattern> ignorePatterns = new HashSet<>();
 	static {
 		for(String igoreRegex : ignoreStack) {
@@ -50,6 +51,9 @@ public class StackInformation extends EventEditor {
 		boolean foundCorrect = false;
 		List<StackTraceElement> filteredElements = new ArrayList<>();
 		for(StackTraceElement element : elements) {
+			if(element.getClassName().equals("com.lmax.disruptor.BatchEventProcessor")) {
+				return;
+			}
 			// Check the ignore list
 			String prefix = element.getClassName() + "." + element.getMethodName();
 			if(!foundCorrect) {

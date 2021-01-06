@@ -142,7 +142,7 @@ public class ErrorSinkSentryAppender extends SentryAppender {
 		}
 
 		// Culprit
-		eventBuilder.withCulprit(event.getLoggerName());
+		eventBuilder.withTransaction(event.getLoggerName());
 
 		// Log4j metadata
 		if(event.getContextStack() != null && !event.getContextStack().asList().isEmpty()) {
